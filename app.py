@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import jsonify
 import requests
 import pickle
+import numpy as np
 import sklearn
 from sklearn.preprocessing import StandardScaler
 app = Flask(__name__)
@@ -24,7 +25,7 @@ def predict():
         prediction=model.predict([[Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age]])
         output=round(prediction[0],2)
         if output==0:
-            return render_template('index.html',prediction_texts="Not likely to have Diabetes")
+            return render_template('index.html',prediction_text="Not likely to have Diabetes")
         else:
             return render_template('index.html',prediction_text="You are likely to have Diabetes")
 
